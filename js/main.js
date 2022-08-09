@@ -114,7 +114,6 @@ const similarAd = () => ({
   }
 });
 
-
 const similarAds = Array.from({ length: ADS_OFFER_NUMBER }, similarAd);
 
 pushAvatarUrl ();
@@ -128,5 +127,3 @@ function pushAvatarUrl  () {
     }
   }
 }
-
-console.log(similarAds);
