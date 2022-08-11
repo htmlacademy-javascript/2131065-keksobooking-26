@@ -93,20 +93,20 @@ const getRandomValue = (value) => {
 
 const similarAd = () => ({
   author: {
-    avatar: '',
+    avatar: `img/avatars/user0${getRandomIntNumber(1, 9 )}.png`,
   },
   offer: {
     title: getRandomValue(ADS_OFFER_TITLES),
-    address: `lat: ${getRandomFloatNumber(35.65000, 35.70000, 5)}, lng: ${getRandomFloatNumber(139.70000, 139.80000, 5)}`,
+    address: `${getRandomFloatNumber(35.65000, 35.70000, 5)}, ${getRandomFloatNumber(139.70000, 139.80000, 5)}`,
     price: getRandomIntNumber(10, 100),
     type: getRandomValue(ADS_OFFER_TYPES),
     rooms: getRandomIntNumber(1, 4),
     guests: getRandomIntNumber(1, 10),
     checkin: getRandomValue(ADS_OFFER_TIMES),
     checkout: getRandomValue(ADS_OFFER_TIMES),
-    features: ADS_OFFER_FEATURES.slice(0,getRandomIntNumber(1, 5)),
+    features: ADS_OFFER_FEATURES.slice(0, getRandomIntNumber(1, 5)),
     description: getRandomValue(ADS_OFFER_DESCRIPTION),
-    photos: ADS_OFFER_PHOTOS.slice(0,getRandomIntNumber(1, 12)),
+    photos: ADS_OFFER_PHOTOS.slice(0, getRandomIntNumber(1, 12)),
   },
   location: {
     lat: getRandomFloatNumber(35.65000, 35.70000, 5),
@@ -114,16 +114,5 @@ const similarAd = () => ({
   }
 });
 
-const similarAds = Array.from({ length: ADS_OFFER_NUMBER }, similarAd);
-
-pushAvatarUrl ();
-
-function pushAvatarUrl  () {
-  for (let i = 0; i < similarAds.length; i++) {
-    if (i < 9) {
-      similarAds[i].author.avatar = `img/avatars/user0${i + 1}.png`;
-    } else {
-      similarAds[i].author.avatar = `img/avatars/user${i + 1}.png`;
-    }
-  }
-}
+const similarAds = () => Array.from({ length: ADS_OFFER_NUMBER }, similarAd);
+similarAds();
