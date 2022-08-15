@@ -1,3 +1,2 @@
-import { getSimilarAds } from './data.js';
-
-getSimilarAds();
+import {getPopup} from './generate-similar-objects.js';
+getPopup();
