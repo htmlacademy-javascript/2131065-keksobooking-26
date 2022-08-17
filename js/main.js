@@ -1,5 +1,5 @@
 import {getPopup} from './generate-similar-objects.js';
-import {setFormDisabled} from './form.js';
+import {changeFormState, FormStates} from './form.js';
 
 getPopup();
-setFormDisabled(true);
+changeFormState(FormStates.Enable);

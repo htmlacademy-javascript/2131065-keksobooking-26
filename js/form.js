@@ -1,10 +1,14 @@
-const setFormDisabled = (state) => {
+const FormStates = {
+  Enable: true,
+  Disable: false,
+};
+
+const changeFormState = (state) => {
 
   const adForm = document.querySelector('.ad-form');
-  const adFormsFieldset = document.querySelectorAll('fieldset');
-  const mapFilters = document.querySelectorAll('.map__filters select');
-  const allDisablingItems = [...mapFilters, ...adFormsFieldset];
-  if (state) {
+  const allDisablingItems = document.querySelectorAll('fieldset, fieldset, .map__filters select');
+
+  if (state === FormStates.Disable) {
     adForm.classList.add('ad-form--disabled');
   }
   allDisablingItems.forEach((element) => {
@@ -12,4 +16,4 @@ const setFormDisabled = (state) => {
   });
 };
 
-export { setFormDisabled };
+export { changeFormState, FormStates };
