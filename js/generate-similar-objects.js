@@ -1,7 +1,5 @@
-import { getSimilarAds } from './data.js';
 
 const mapCanvas = document.querySelector('#map-canvas');
-const adsData = getSimilarAds();
 
 const offerTypes = {
   palace: 'Дворец',
@@ -101,4 +99,4 @@ const getPopup = (data) => {
 
   mapCanvas.appendChild(objectTemplate);
 };
-export { getPopup, adsData };
+export { getPopup };
