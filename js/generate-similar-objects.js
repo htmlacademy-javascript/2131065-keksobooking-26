@@ -1,6 +1,5 @@
 import { getSimilarAds } from './data.js';
 
-let objectTemplate = '';
 const mapCanvas = document.querySelector('#map-canvas');
 const adsData = getSimilarAds();
 
@@ -18,22 +17,23 @@ const hideElement = (element) => {
 
 const isNull = (adsDataElement) => (!adsDataElement || 0 === adsDataElement.length);
 
-const addSrc = (objectFragmentClass, adsDataElement) => {
+const addSrc = (objectTemplate, objectFragmentClass, adsDataElement) => {
   if (isNull(adsDataElement)) {
-    hideElement(objectTemplate.querySelector(`${objectFragmentClass}`));
+    hideElement(objectTemplate.querySelector(objectFragmentClass));
   } else {
-    objectTemplate.querySelector(`${objectFragmentClass}`).src = adsDataElement;
+    objectTemplate.querySelector(objectFragmentClass).src = adsDataElement;
   }
 };
 
-const getOfferTextContent = (objectFragmentClass, adsDataElement) => {
+const getOfferTextContent = (objectTemplate, objectFragmentClass, adsDataElement) => {
+  const element = objectTemplate.querySelector(objectFragmentClass);
   if (isNull(adsDataElement)) {
-    hideElement(objectTemplate.querySelector(`${objectFragmentClass}`));
+    hideElement(element);
   } else {
-    objectTemplate.querySelector(`${objectFragmentClass}`).textContent = adsDataElement;
+    element.textContent = adsDataElement;
   }
 };
-const getOfferPriceContent = (adsDataElement) => {
+const getOfferPriceContent = (objectTemplate, adsDataElement) => {
   if (isNull(adsDataElement)) {
     hideElement(objectTemplate.querySelector('.popup__text--price'));
   } else {
@@ -41,7 +41,7 @@ const getOfferPriceContent = (adsDataElement) => {
   }
 };
 
-const getOfferTimeContent = (adsDataElement, adsDataElement1) => {
+const getOfferTimeContent = (objectTemplate, adsDataElement, adsDataElement1) => {
   if (isNull(adsDataElement) || isNull(adsDataElement1)) {
     hideElement(objectTemplate.querySelector('.popup__text--time'));
   } else {
@@ -49,7 +49,7 @@ const getOfferTimeContent = (adsDataElement, adsDataElement1) => {
   }
 };
 
-const getOfferCapacityContent = (adsDataElement, adsDataElement1) => {
+const getOfferCapacityContent = (objectTemplate, adsDataElement, adsDataElement1) => {
   if (isNull(adsDataElement) || isNull(adsDataElement1)) {
     hideElement(objectTemplate.querySelector('.popup__text--capacity'));
   } else {
@@ -57,7 +57,7 @@ const getOfferCapacityContent = (adsDataElement, adsDataElement1) => {
   }
 };
 
-const getOfferFeatures = (features) => {
+const getOfferFeatures = (objectTemplate, features) => {
   const offerFeatures = objectTemplate.querySelector('.popup__features');
   offerFeatures.textContent = '';
   if (!isNull(features)) {
@@ -69,7 +69,7 @@ const getOfferFeatures = (features) => {
   }
 };
 
-const getOfferPhotos = (photos) => {
+const getOfferPhotos = (objectTemplate, photos) => {
   const offerPhoto = objectTemplate.querySelector('.popup__photos');
   offerPhoto.textContent = '';
   if (!isNull(photos)) {
@@ -86,17 +86,17 @@ const getOfferPhotos = (photos) => {
 };
 
 const getPopup = (data) => {
-  objectTemplate = document.querySelector('#card').content;
-  addSrc('.popup__avatar', data.author.avatar);
-  getOfferTextContent('.popup__title', data.offer.title);
-  getOfferTextContent('.popup__text--address', data.offer.address);
-  getOfferTextContent('.popup__description', data.offer.description);
-  getOfferTextContent('.popup__type', offerTypes[data.offer.type]);
-  getOfferPriceContent(data.offer.price);
-  getOfferTimeContent(data.offer.checkin, data.offer.checkout);
-  getOfferCapacityContent(data.offer.rooms, data.offer.guests);
-  getOfferFeatures(data.offer.features);
-  getOfferPhotos(data.offer.photos);
+  const objectTemplate = document.querySelector('#card').content;
+  addSrc(objectTemplate, '.popup__avatar', data.author.avatar);
+  getOfferTextContent(objectTemplate, '.popup__title', data.offer.title);
+  getOfferTextContent(objectTemplate, '.popup__text--address', data.offer.address);
+  getOfferTextContent(objectTemplate, '.popup__description', data.offer.description);
+  getOfferTextContent(objectTemplate, '.popup__type', offerTypes[data.offer.type]);
+  getOfferPriceContent(objectTemplate, data.offer.price);
+  getOfferTimeContent(objectTemplate, data.offer.checkin, data.offer.checkout);
+  getOfferCapacityContent(objectTemplate, data.offer.rooms, data.offer.guests);
+  getOfferFeatures(objectTemplate, data.offer.features);
+  getOfferPhotos(objectTemplate, data.offer.photos);
 
 
   mapCanvas.appendChild(objectTemplate);
