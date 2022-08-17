@@ -1,3 +1,5 @@
+const adForm = document.querySelector('.ad-form');
+
 const FormStates = {
   Enable: true,
   Disable: false,
@@ -5,7 +7,6 @@ const FormStates = {
 
 const changeFormState = (state) => {
 
-  const adForm = document.querySelector('.ad-form');
   const allDisablingItems = document.querySelectorAll('fieldset, fieldset, .map__filters select');
 
   if (state === FormStates.Disable) {
