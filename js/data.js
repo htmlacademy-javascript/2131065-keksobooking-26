@@ -1,4 +1,4 @@
-import {getRandomFloatNumber, getRandomIntNumber, getRandomValue} from './tools.js';
+import { getRandomFloatNumber, getRandomIntNumber, getRandomValue } from './tools.js';
 
 const ADS_OFFER_NUMBER = 10;
 const ADS_OFFER_TYPES = [
@@ -65,12 +65,12 @@ const ADS_OFFER_FEATURES = [
 
 const similarAd = () => ({
   author: {
-    avatar: `img/avatars/user0${getRandomIntNumber(1, 9 )}.png`,
+    avatar: `img/avatars/user0${getRandomIntNumber(1, 9)}.png`,
   },
   offer: {
     title: getRandomValue(ADS_OFFER_TITLES),
     address: `${getRandomFloatNumber(35.65000, 35.70000, 5)}, ${getRandomFloatNumber(139.70000, 139.80000, 5)}`,
-    price: getRandomIntNumber(10, 100),
+    price: getRandomIntNumber(2000, 5000),
     type: getRandomValue(ADS_OFFER_TYPES),
     rooms: getRandomIntNumber(1, 4),
     guests: getRandomIntNumber(1, 10),
