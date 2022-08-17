@@ -12,7 +12,9 @@ const changeFormState = (state) => {
     adForm.classList.add('ad-form--disabled');
   }
   allDisablingItems.forEach((element) => {
-    element.disabled = state;
+    if (state === FormStates.Disable) {
+      element.disabled = true;
+    }
   });
 };
 
