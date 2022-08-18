@@ -1,5 +1,7 @@
 import {getPopup} from './generate-similar-objects.js';
+import {changeFormState, FormStates} from './form.js';
 import { getSimilarAds } from './data.js';
 
-getPopup(getSimilarAds()[1]);
+changeFormState(FormStates.Disable);
 
+getPopup(getSimilarAds()[1]);
