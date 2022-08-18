@@ -4,5 +4,4 @@ import { getSimilarAds } from './data.js';
 
 changeFormState(FormStates.Disable);
 
-
 getPopup(getSimilarAds()[1]);
