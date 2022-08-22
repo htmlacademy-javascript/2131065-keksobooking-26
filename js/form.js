@@ -19,10 +19,6 @@ const changeFormState = (state) => {
   });
 };
 
-const housingType = adForm.querySelector('#type');
-const housingPrice = adForm.querySelector('#price');
-console.log(housingPrice, housingType);
-
 noUiSlider.create(sliderPrice, {
   range: {
     'min': 1000,
