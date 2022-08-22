@@ -19,6 +19,10 @@ const changeFormState = (state) => {
   });
 };
 
+const housingType = adForm.querySelector('#type');
+const housingPrice = adForm.querySelector('#price');
+console.log(housingPrice, housingType);
+
 noUiSlider.create(sliderPrice, {
   range: {
     'min': 1000,
@@ -60,15 +64,16 @@ function validateCapacity() {
 
 const errorText = () => {
   if (roomNumber.value === '1') {
-    return `${roomNumber[0].innerHTML} подходит только для 1 гостя`;
+    return `${roomNumber.value} комната подходит только для 1 гостя`;
   } if (roomNumber.value === '2') {
-    return `${roomNumber[1].innerHTML} подходят для только 1 или 2 гостей`;
+    return `${roomNumber.value} комнаты подходят только для 1 или 2 гостей`;
   } if (roomNumber.value === '3') {
-    return `${roomNumber[2].innerHTML} подходят для только 1, 2 или 3 гостей`;
+    return `${roomNumber.value} комнаты подходят только для 1, 2 или 3 гостей`;
   } else {
-    return `${roomNumber[3].innerHTML} не для гостей`;
+    return `${roomNumber.value} комнат не для гостей`;
   }
 };
+
 
 pristine.addValidator(roomNumber, validateCapacity, errorText);
 pristine.addValidator(capacity, validateCapacity, errorText);
