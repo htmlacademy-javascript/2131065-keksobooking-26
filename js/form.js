@@ -42,11 +42,12 @@ const pristine = new Pristine(adForm, {
   errorTextClass: 'form__error'
 });
 
+
 const capacityOptions = {
-  '1 комната': ['для 1 гостя'],
-  '2 комнаты': ['для 2 гостей', 'для 1 гостя'],
-  '3 комнаты': ['для 3 гостей', 'для 2 гостей', 'для 1 гостя'],
-  '100 комнат': ['не для гостей']
+  '1': ['1'],
+  '2': ['2', '1'],
+  '3': ['3', '2', '1'],
+  '100': ['0']
 };
 
 const roomNumber = adForm.querySelector('[name="rooms"]');
@@ -58,14 +59,14 @@ function validateCapacity() {
 
 
 const errorText = () => {
-  if (roomNumber.value === '1 комната') {
-    return `${roomNumber.value} подходит только для 1 гостя`;
-  } if (roomNumber.value === '2 комнаты') {
-    return `${roomNumber.value} подходят для только 1 или 2 гостей`;
-  } if (roomNumber.value === '3 комнаты') {
-    return `${roomNumber.value} подходят для только 1, 2 или 3 гостей`;
+  if (roomNumber.value === '1') {
+    return `${roomNumber[0].innerHTML} подходит только для 1 гостя`;
+  } if (roomNumber.value === '2') {
+    return `${roomNumber[1].innerHTML} подходят для только 1 или 2 гостей`;
+  } if (roomNumber.value === '3') {
+    return `${roomNumber[2].innerHTML} подходят для только 1, 2 или 3 гостей`;
   } else {
-    return `${roomNumber.value} только не для гостей`;
+    return `${roomNumber[3].innerHTML} не для гостей`;
   }
 };
 
