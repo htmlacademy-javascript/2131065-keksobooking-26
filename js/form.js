@@ -6,6 +6,22 @@ const FormStates = {
 const adForm = document.querySelector('.ad-form');
 const sliderPrice = document.querySelector('.ad-form__slider');
 const updateSliderPrice = document.querySelector('input#price');
+const adFormElementTime = adForm.querySelector('.ad-form__element--time');
+const housingType = adForm.querySelector('#type');
+const housingPrice = adForm.querySelector('#price');
+const roomNumber = adForm.querySelector('[name="rooms"]');
+const capacity = adForm.querySelector('[name="capacity"]');
+adFormElementTime.querySelector('#timein').addEventListener('change', timeSync);
+adFormElementTime.querySelector('#timeout').addEventListener('change', timeSync);
+
+
+//Функцию взял здесь https://ru.stackoverflow.com/questions/919701/%D0%A1%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-select%D1%8B
+
+function timeSync() {
+  const other = document.querySelector(
+    (this.id === 'timeout') ? '#timein' : '#timeout');
+  other.value = this.value;
+}
 
 const changeFormState = (state) => {
   const allDisablingItems = document.querySelectorAll('fieldset, fieldset, .map__filters select');
@@ -19,14 +35,33 @@ const changeFormState = (state) => {
   });
 };
 
+
+housingType.addEventListener('change', () => {
+  if (housingType.value === 'flat') {
+    housingPrice.min = 1000;
+  } if (housingType.value === 'hotel') {
+    housingPrice.min = 3000;
+  } if (housingType.value === 'house') {
+    housingPrice.min = 5000;
+  } if (housingType.value === 'palace') {
+    housingPrice.min = 10000;
+  } if (housingType.value === 'bungalow') {
+    housingPrice.min = 0;
+  }
+  housingPrice.value = '';
+  housingPrice.placeholder = `от ${housingPrice.min} ₽`;
+  housingPrice.dataset.pristineMinMessage = `Цена не может быть меньше ${housingPrice.min} ₽`;
+});
+
+const validatePrice = () => housingPrice.value > housingPrice.min - 1;
+
 noUiSlider.create(sliderPrice, {
   range: {
-    'min': 1000,
+    'min': 0,
     'max': 100000
   },
   start: 0,
-  margin: 2,
-  step: 1000,
+  step: 500,
 });
 
 sliderPrice.noUiSlider.on('update', (values, handle) => {
@@ -50,13 +85,7 @@ const capacityOptions = {
   '100': ['0']
 };
 
-const roomNumber = adForm.querySelector('[name="rooms"]');
-const capacity = adForm.querySelector('[name="capacity"]');
-
-function validateCapacity() {
-  return capacityOptions[roomNumber.value].includes(capacity.value);
-}
-
+const validateCapacity = () => capacityOptions[roomNumber.value].includes(capacity.value);
 
 const errorText = () => {
   if (roomNumber.value === '1') {
@@ -69,10 +98,9 @@ const errorText = () => {
     return `${roomNumber.value} комнат не для гостей`;
   }
 };
-
-
 pristine.addValidator(roomNumber, validateCapacity, errorText);
 pristine.addValidator(capacity, validateCapacity, errorText);
+pristine.addValidator(housingPrice, validatePrice, 'Проверьте цену');
 
 
 adForm.addEventListener('submit', (evt) => {
