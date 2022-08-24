@@ -18,8 +18,8 @@ adFormElementTime.querySelector('#timeout').addEventListener('change', timeSync)
 //Функцию взял здесь https://ru.stackoverflow.com/questions/919701/%D0%A1%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-select%D1%8B
 
 function timeSync() {
-  const other = document.getElementById(
-    (this.id === 'timeout') ? 'timein' : 'timeout');
+  const other = document.querySelector(
+    (this.id === 'timeout') ? '#timein' : '#timeout');
   other.value = this.value;
 }
 
