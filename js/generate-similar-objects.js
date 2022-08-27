@@ -1,6 +1,4 @@
 
-const mapCanvas = document.querySelector('#map-canvas');
-
 const offerTypes = {
   palace: 'Дворец',
   flat: 'Квартира',
@@ -84,19 +82,19 @@ const getOfferPhotos = (objectTemplate, photos) => {
 };
 
 const getPopup = (data) => {
-  const objectTemplate = document.querySelector('#card').content;
-  addSrc(objectTemplate, '.popup__avatar', data.author.avatar);
-  getOfferTextContent(objectTemplate, '.popup__title', data.offer.title);
-  getOfferTextContent(objectTemplate, '.popup__text--address', data.offer.address);
-  getOfferTextContent(objectTemplate, '.popup__description', data.offer.description);
-  getOfferTextContent(objectTemplate, '.popup__type', offerTypes[data.offer.type]);
-  getOfferPriceContent(objectTemplate, data.offer.price);
-  getOfferTimeContent(objectTemplate, data.offer.checkin, data.offer.checkout);
-  getOfferCapacityContent(objectTemplate, data.offer.rooms, data.offer.guests);
-  getOfferFeatures(objectTemplate, data.offer.features);
-  getOfferPhotos(objectTemplate, data.offer.photos);
+  const objectTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const popupElement = objectTemplate.cloneNode(true);
+  addSrc(popupElement, '.popup__avatar', data.author.avatar);
+  getOfferTextContent(popupElement, '.popup__title', data.offer.title);
+  getOfferTextContent(popupElement, '.popup__text--address', data.offer.address);
+  getOfferTextContent(popupElement, '.popup__description', data.offer.description);
+  getOfferTextContent(popupElement, '.popup__type', offerTypes[data.offer.type]);
+  getOfferPriceContent(popupElement, data.offer.price);
+  getOfferTimeContent(popupElement, data.offer.checkin, data.offer.checkout);
+  getOfferCapacityContent(popupElement, data.offer.rooms, data.offer.guests);
+  getOfferFeatures(popupElement, data.offer.features);
+  getOfferPhotos(popupElement, data.offer.photos);
 
-
-  mapCanvas.appendChild(objectTemplate);
+  return popupElement;
 };
 export { getPopup };
