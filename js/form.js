@@ -112,4 +112,4 @@ adForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
-export { changeFormState, FormStates };
+export { changeFormState, FormStates, adForm };

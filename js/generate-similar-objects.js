@@ -94,7 +94,6 @@ const getPopup = (data) => {
   getOfferCapacityContent(popupElement, data.offer.rooms, data.offer.guests);
   getOfferFeatures(popupElement, data.offer.features);
   getOfferPhotos(popupElement, data.offer.photos);
-
   return popupElement;
 };
 export { getPopup };

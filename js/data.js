@@ -70,7 +70,7 @@ const similarAd = () => ({
   offer: {
     title: getRandomValue(ADS_OFFER_TITLES),
     address: `${getRandomFloatNumber(35.70800, 35.71100, 5)}, ${getRandomFloatNumber(139.79000, 139.81000, 5)}`,
-    price: getRandomIntNumber(2000, 5000),
+    price: getRandomIntNumber(2000, 50000),
     type: getRandomValue(ADS_OFFER_TYPES),
     rooms: getRandomIntNumber(1, 4),
     guests: getRandomIntNumber(1, 10),
