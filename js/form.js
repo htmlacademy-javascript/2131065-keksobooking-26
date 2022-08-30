@@ -3,6 +3,7 @@ const FormStates = {
   Disable: false,
 };
 
+
 const adForm = document.querySelector('.ad-form');
 const sliderPrice = document.querySelector('.ad-form__slider');
 const updateSliderPrice = document.querySelector('input#price');
@@ -15,8 +16,6 @@ adFormElementTime.querySelector('#timein').addEventListener('change', timeSync);
 adFormElementTime.querySelector('#timeout').addEventListener('change', timeSync);
 
 
-//Функцию взял здесь https://ru.stackoverflow.com/questions/919701/%D0%A1%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-select%D1%8B
-
 function timeSync() {
   const other = document.querySelector(
     (this.id === 'timeout') ? '#timein' : '#timeout');
@@ -27,14 +26,19 @@ const changeFormState = (state) => {
   const allDisablingItems = document.querySelectorAll('fieldset, fieldset, .map__filters select');
   if (state === FormStates.Disable) {
     adForm.classList.add('ad-form--disabled');
+  } else {
+    adForm.classList.remove('ad-form--disabled');
   }
   allDisablingItems.forEach((element) => {
     if (state === FormStates.Disable) {
       element.disabled = true;
+    } else {
+      element.disabled = false;
     }
   });
 };
 
+changeFormState(FormStates.Disable);
 
 housingType.addEventListener('change', () => {
   if (housingType.value === 'flat') {
@@ -108,4 +112,4 @@ adForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
-export { changeFormState, FormStates };
+export { changeFormState, FormStates, adForm };

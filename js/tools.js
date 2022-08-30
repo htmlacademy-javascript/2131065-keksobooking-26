@@ -1,5 +1,3 @@
-// Для функций случайных чисел использовал информацию из этой статьи: https://stackabuse.com/javascript-generate-random-number-in-range/
-
 const getRandomIntNumber = (min, max) => {
   if (min >= max) {
     throw Error(`Первое число диапазона должно быть меньше второго.\nВы ввели ${min} и ${max}`);

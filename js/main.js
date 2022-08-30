@@ -1,7 +1,5 @@
-import {getPopup} from './generate-similar-objects.js';
-import {changeFormState, FormStates} from './form.js';
 import { getSimilarAds } from './data.js';
+import {initMap} from './map.js';
 
-changeFormState(FormStates.Enable);
-
-getPopup(getSimilarAds()[1]);
+const ads = getSimilarAds();
+initMap(ads);
