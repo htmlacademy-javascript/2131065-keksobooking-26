@@ -1,5 +1,27 @@
 /* Custom styles */
 
+.error.fetch-error {
+  animation: fadeOut 3s;
+}
+
+.error.fetch-error sub {
+  font-size: 0.5em;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+}
+
 span.pristine-error.form__error {
   color: #fff;
   background-color: #ff9a00fc;
