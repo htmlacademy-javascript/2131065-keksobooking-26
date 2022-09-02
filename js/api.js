@@ -31,6 +31,5 @@ const getData = () => {
     });
 };
 
-
 export { getData };
 
