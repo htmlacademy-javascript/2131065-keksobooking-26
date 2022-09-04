@@ -1,3 +1,9 @@
+import { initMap } from './map.js';
+import { getData } from './api.js';
+import { sendData } from './api.js';
+import { showErrorMessageTimer, showSuccessMessage, showErrorMessageButton } from './tools.js';
+
+
 const FormStates = {
   Enable: true,
   Disable: false,
@@ -109,7 +115,11 @@ pristine.addValidator(housingPrice, validatePrice, 'Проверьте цену'
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  if (pristine.validate()) {
+    const formData = new FormData(evt.target);
+    sendData(formData, showErrorMessageButton, showSuccessMessage);
+    getData(initMap, showErrorMessageTimer);
+  }
 });
 
 export { changeFormState, FormStates, adForm };

@@ -51,8 +51,7 @@ mainMarker.on('moveend', (evt) => {
   const locationAddressValues = evt.target.getLatLng();
   locationAddress.value = `${locationAddressValues.lat.toFixed(5)}, ${locationAddressValues.lng.toFixed(5)}`;
 });
-
-const setAdMarker = (ads) => {
+const setAdMarkers = (ads) => {
   ads.forEach((element) => {
     const marker = L.marker(
       {
@@ -71,7 +70,7 @@ const resetMap = (ads) => {
   getMap().setView(MAP_COORDINATES, MAP_ZOOM);
   markerGroup.closePopup();
   markerGroup.clearLayers();
-  setAdMarker(ads);
+  setAdMarkers(ads);
 };
 
 const initMap = (ads) => {
@@ -85,4 +84,4 @@ const initMap = (ads) => {
   adForm.addEventListener('reset', () => resetMap(ads));
 };
 
-export { initMap };
+export { initMap, resetMap };
