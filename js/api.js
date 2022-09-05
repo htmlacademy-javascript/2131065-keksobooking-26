@@ -1,6 +1,6 @@
 
 const getData = (onSuccess, onError) => {
-  fetch('https://26.javascript.pages.academy/keksobooking/data')
+  fetch('https://26.javascript.pages.academy/keksobooking/dat')
     .then((response) => {
       if (response.ok) {
         return response;
@@ -16,7 +16,7 @@ const getData = (onSuccess, onError) => {
 
 const sendData = (formData, onError, onSuccess) => {
   fetch(
-    'https://26.javascript.pages.academy/keksboking',
+    'https://26.javascript.pages.academy/keksobooking',
     {
       method: 'POST',
       body: formData,
