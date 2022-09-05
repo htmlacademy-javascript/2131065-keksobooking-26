@@ -1,7 +1,9 @@
 //import { getSimilarAds } from './data.js';
-//import {initMap} from './map.js';
-import {getData} from './api.js';
+import { initMap } from './map.js';
+import { getData } from './api.js';
+import { showErrorMessageTimer } from './tools.js';
 
-//const ads = getSimilarAds();
-//initMap(ads);
-getData();
+getData(initMap, () => {
+  showErrorMessageTimer('Соединение с сервером не удалось');
+  initMap([]);
+});
