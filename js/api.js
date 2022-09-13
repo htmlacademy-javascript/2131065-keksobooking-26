@@ -1,6 +1,6 @@
 
 const getData = (onSuccess, onError) => {
-  fetch('https://26.javascript.pages.academy/keksobooking/dat')
+  fetch('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if (response.ok) {
         return response;
