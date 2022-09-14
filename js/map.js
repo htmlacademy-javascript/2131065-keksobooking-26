@@ -1,7 +1,6 @@
 import { getPopup } from './generate-similar-objects.js';
 import { changeFormState, FormStates, adForm } from './form.js';
-
-const ADS_NUMBER = 4;
+import { filterAds, changeFilterValue, typeElement, guestsElement } from './filters.js';
 
 const MARKER_COORDINATES = {
   lat: 35.710,
@@ -73,15 +72,22 @@ const resetMap = (ads) => {
   setAdMarkers(ads);
 };
 
+let enableFilter = '';
+
 const initMap = (ads) => {
   getMap();
-  ads = ads.slice(0, ADS_NUMBER);
+  enableFilter(ads);
+  ads = filterAds(ads);
   resetMap(ads);
   tileLayer.addTo(map);
   mainMarker.addTo(map);
   markerGroup.addTo(map);
   changeFormState(FormStates.Enable);
   adForm.addEventListener('reset', () => resetMap(ads));
+};
+
+enableFilter = (ads) => {
+  changeFilterValue(typeElement, () => initMap(ads));
 };
 
 export { initMap, resetMap };
