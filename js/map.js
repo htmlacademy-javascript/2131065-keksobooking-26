@@ -87,9 +87,7 @@ const initMap = (ads) => {
 };
 
 enableFilter = (ads) => {
-  changeFilterValue(typeElement, () => filterAds(ads), () => initMap(ads));
-  changeFilterValue(guestsElement, () => filterAds(ads), () => initMap(ads));
-
+  changeFilterValue(typeElement, () => initMap(ads));
 };
 
 export { initMap, resetMap };
