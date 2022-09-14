@@ -7,11 +7,10 @@ const guestsElement = filtersForm.querySelector('#housing-guests');
 
 const ADS_NUMBER = 10;
 
-const changeFilterValue = (target, cb) => {
+const changeFilterValue = (target, cb1, cb2) => {
   target.addEventListener('change', () => {
-    console.log(target.value);
-    cb();
-    return target.value;
+    console.log(cb1());
+    cb2(cb1());
   }
   );
 };

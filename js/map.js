@@ -72,10 +72,11 @@ const resetMap = (ads) => {
   setAdMarkers(ads);
 };
 
+let enableFilter = '';
+
 const initMap = (ads) => {
   getMap();
-  changeFilterValue(typeElement, () => filterAds(ads));
-  changeFilterValue(guestsElement, () => filterAds(ads));
+  enableFilter(ads);
   ads = filterAds(ads);
   resetMap(ads);
   tileLayer.addTo(map);
@@ -83,6 +84,12 @@ const initMap = (ads) => {
   markerGroup.addTo(map);
   changeFormState(FormStates.Enable);
   adForm.addEventListener('reset', () => resetMap(ads));
+};
+
+enableFilter = (ads) => {
+  changeFilterValue(typeElement, () => filterAds(ads), () => initMap(ads));
+  changeFilterValue(guestsElement, () => filterAds(ads), () => initMap(ads));
+
 };
 
 export { initMap, resetMap };
